@@ -3,7 +3,7 @@
     "use strict"
 
     var card = {
-        templateUrl:'/static/scrumboard/card.html',
+        templateUrl:'/static/html/card.html',
         controller: cardCtrl,
         bindings: {
             info:"<",

@@ -3,28 +3,25 @@
             "use strict"
 
             angular
-                    .module("scrumboard",[])
+                    .module("scrumboard",['ngRoute'])
                     .controller("scrumCtrl", scrumCtrl);
 
-            function scrumCtrl($http) {
+            function scrumCtrl($http,$scope,$location) {
 
-                var ctrl = this;
+                $scope.add = add;
+                $scope.logout= logout
 
-                ctrl.add = add;
-                ctrl.login = login;
-
-                function login() {
-                    console.log("login")
-                    $http.post('/auth_api/login/',
-                    {'username':'moss','password':'elmeromero'})
+                function logout() {
+                    $http.get('/auth_api/logout/')
                         .then(function () {
-                            window.location.reload()
+                            $location.url('/login');
                         })
                 }
                 
                 $http.get("/scrumboard/lists/")
                     .then(function (response) {
-                        ctrl.data = response.data
+                        $scope.data = response.data
+                        console.log($scope.data)
                     })
 
                 function add(list, title) {
@@ -39,7 +36,7 @@
                             list.cards.push(card)
                             $http.get("/scrumboard/lists/")
                                 .then(function (response) {
-                                    ctrl.data = response.data
+                                    $scope.data = response.data
                                 })
                         },function (error) {
                             console.log(error)
