@@ -5,9 +5,39 @@
 </div>
 <div ng-repeat="list in data" class="list">
     <h3>{{ list.name }}</h3>
+
+    <span>
+        <button ng-click="showFilters = !showFilters">
+            {{showFilters ? "Hide" : "Show"}} filters
+        </button>
+    </span>
+
+    <div ng-show="showFilters">
+        <table>
+            <tr>
+                <td><label >Sort: </label></td>
+                <td>
+                    <select ng-model="sortBy">
+                        <option value="title">title</option>
+                        <option value="story_points"> story points</option>
+                        <option value="business_value">business_value</option>
+                    </select>
+
+                    <input type="checkbox" ng-model="reverse">
+                    <label>Reverse</label>
+
+                </td>
+            </tr>
+            <tr>
+                <td><label>Filter:</label></td>
+                <td><input type="text" ng-model="filterBy"></td>
+            </tr>
+        </table>
+    </div>
+
     <ul>
-        <li ng-repeat="card in list.cards">
-            <scrumboard-card info="card" list="list"></scrumboard-card>
+        <li ng-repeat="card in list.cards | filter:filterBy | orderBy:sortBy:reverse">
+            <scrumboard-card info="card" list="list" data="data"></scrumboard-card>
         </li>
     </ul>
     <div class="flex">

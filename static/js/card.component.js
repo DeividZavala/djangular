@@ -7,7 +7,8 @@
         controller: cardCtrl,
         bindings: {
             info:"<",
-            list:"<"
+            list:"<",
+            data:"<"
         }
     }
 

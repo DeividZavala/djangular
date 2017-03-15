@@ -12,4 +12,10 @@
     <button ng-click="$ctrl.update()">Modificar</button>
     <button ng-click="$ctrl.deleteCard()">Eliminar</button>
 
+    <div>
+        <label>List:</label>
+        <select ng-options="list as list.name for list in $ctrl.data" ng-model="destList"></select>
+        <button ng-click="$ctrl.move()">Move</button>
+    </div>
+
 </div>
