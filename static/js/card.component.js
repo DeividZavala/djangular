@@ -18,8 +18,15 @@
 
         card.update = update;
         card.deleteCard = deleteCard;
-        //console.log(card.list.cards)
-        console.log(card.info.id)
+        card.move = move;
+
+        function move() {
+            if(card.destList === undefined){
+                return;
+            }
+            card.info.list = card.destList.id 
+        }
+        console.log(card.list)
 
         function deleteCard() {
             if(confirm("Seguro que quieres borrar?")){

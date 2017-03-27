@@ -14,8 +14,8 @@
 
     <div>
         <label>List:</label>
-        <select ng-options="list as list.name for list in $ctrl.data" ng-model="destList"></select>
-        <button ng-click="$ctrl.move()">Move</button>
+        <select ng-options="list as list.name for list in $ctrl.data" ng-model="$ctrl.destList"></select>
+        <button ng-click="$ctrl.move()">Mover</button>
     </div>
 
 </div>
